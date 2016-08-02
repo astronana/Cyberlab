@@ -1,2 +1,2 @@
 # Cyberlab
-Some illustrations of models of the world.
+Some toy models of the world.
