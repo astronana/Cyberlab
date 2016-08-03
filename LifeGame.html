@@ -44,12 +44,17 @@
   for(var i = 1; i <= ballw; i++){
       for(var j = 1; j <= ballh; j++){
       addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[Math.floor((Math.random() * 2) + 1)]);
+      // if(i == 1 && j == 1){addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[1]);}
+      // else if(i == 1 && j == 2){addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[1]);}
+      // else if(i == 3 && j == 2){addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[1]);}
+      // else if(i == 1 && j == 3){addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[1]);}
+      // else if(i == 2 && j == 3){addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[1]);}
+      // else{addBall(x=i*ballinter, y=j*ballinter, r=ballr, color=colors[2]);}
       }
   }
   setInterval(
   	function(){
                   render1(context1);
-                  //alert(balls.length)
                   update()
   		},
   	    500
@@ -67,7 +72,6 @@
          if(j > 0){jc = j}
          if(i == 0){ic = ballw}
          if(j == 0){jc = ballh}
-         //alert((ic%ballw)*ballh+(jc-1)%ballh)
          if(balls[(ic%ballw)*ballh+(jc+1)%ballh].color ==colors[1]){neighbor += 1}
          if(balls[(ic%ballw)*ballh+(jc-1)%ballh].color ==colors[1]){neighbor += 1}
          if(balls[((ic+1)%ballw)*ballh+(jc)%ballh].color ==colors[1]){neighbor += 1}
@@ -76,23 +80,19 @@
          if(balls[((ic-1)%ballw)*ballh+(jc+1)%ballh].color ==colors[1]){neighbor += 1}
          if(balls[((ic+1)%ballw)*ballh+(jc-1)%ballh].color ==colors[1]){neighbor += 1}
          if(balls[((ic+1)%ballw)*ballh+(jc+1)%ballh].color ==colors[1]){neighbor += 1}
-         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[1] && neighbor >3){balls[(i%ballw)*ballh+j%ballh].color = colors[2]}
-         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[1] && neighbor <2){balls[(i%ballw)*ballh+j%ballh].color = colors[2]}
-         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[2] && neighbor==3){balls[(i%ballw)*ballh+j%ballh].color = colors[1]}
+         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[1] && neighbor >3){balls[(i%ballw)*ballh+j%ballh].colorback = colors[2]}
+         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[1] && neighbor <2){balls[(i%ballw)*ballh+j%ballh].colorback = colors[2]}
+         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[1] && neighbor ==3){balls[(i%ballw)*ballh+j%ballh].colorback = colors[1]}
+         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[1] && neighbor ==2){balls[(i%ballw)*ballh+j%ballh].colorback = colors[1]}
+         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[2] && neighbor==3){balls[(i%ballw)*ballh+j%ballh].colorback = colors[1]}
+         if(balls[(i%ballw)*ballh+j%ballh].color ==colors[2] && neighbor!=3){balls[(i%ballw)*ballh+j%ballh].colorback = colors[2]}
       }
   }
-    // balls[1].oldx = balls[1].x
-    // balls[1].oldy = balls[1].y
-    // balls[1].theta += 0.1/balls[1].T
-    // balls[1].x = balls[1].R * Math.cos(balls[1].theta)+balls[0].x
-    // balls[1].y = balls[1].R * Math.sin(balls[1].theta)+balls[0].y
-    // for(var i = 2; i < balls.length; i++){
-    //       balls[i].oldx = balls[i].x
-    //       balls[i].oldy = balls[i].y
-    //       balls[i].theta += 0.1/balls[i].T
-    //       balls[i].x = balls[i].R * Math.cos(balls[i].theta) + balls[1].x
-    //       balls[i].y = balls[i].R * Math.sin(balls[i].theta) + balls[1].y
-    // }
+    for(var i = 0; i < ballw; i++){
+      for(var j = 0; j < ballh; j++){
+        balls[(i%ballw)*ballh+j%ballh].color = balls[(i%ballw)*ballh+j%ballh].colorback
+      }
+    }
   }
 
   function addBall(xs, ys, rs, colorset){
@@ -101,7 +101,7 @@
            y:ys,
            r:rs,
            color:colorset,
-           colorback:colors[5]
+           colorback:colorset
       	    }
       balls.push(aBall)
   }
@@ -110,6 +110,7 @@
    cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height)
    for(var i=0;i<balls.length;i++){
         cxt.fillStyle=balls[i].color;
+        //if(i == 1*74+44){alert(balls[i].color)}
         cxt.beginPath();
         cxt.arc(balls[i].x,balls[i].y,balls[i].r*1,0,2*Math.PI,true);
         //cxt.fillRect(balls[i].x-balls[i].r+3,balls[i].y-balls[i].r+3,balls[i].x+balls[i].r-3,balls[i].y+balls[i].r-3)
