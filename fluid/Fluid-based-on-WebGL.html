@@ -85,7 +85,6 @@
             var material = new THREE.LineBasicMaterial( { vertexColors: true}, {Linewidth:3} );
             // var mat = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors, side: THREE.DoubleSide})
             var color1 = new THREE.Color( 0xf4fbed ), color2 = new THREE.Color( 0x509ca0 ), color3 = new THREE.Color( 0x655ea6 ), color4 = new THREE.Color(0x69aed6), color0 = new THREE.Color( 0xffffff );
-            // 线的材质可以由2点的颜色决定
 
             var p1 = new THREE.Vector3( 0, 0, 0 );
             var p2 = new THREE.Vector3( 1, 0, 0 );
@@ -152,29 +151,6 @@ for(var i = 0; i < lines.length; i++){
         }
     }
 
-// total elastic collision
-  // for(var i = 0; i < lines.length; i++){
-  //  for(var j = i+1; j < lines.length; j++){
-  //   if(Math.pow((lines[i].position.x-lines[j].position.x),2)+Math.pow((lines[i].position.y-lines[j].position.y),2)<Math.pow((r+r),2)){
-  //     var dis2 = Math.sqrt(Math.pow((lines[i].position.x-lines[j].position.x),2)+Math.pow((lines[i].position.y-lines[j].position.y),2))
-  //     lines[i].position.x = lines[i].position.x+(r+r-dis2)*r/(r+r)*(lines[i].position.x-lines[j].position.x)/dis2
-  //     lines[i].position.y = lines[i].position.y+(r+r-dis2)*r/(r+r)*(lines[i].position.y-lines[j].position.y)/dis2
-  //     lines[j].position.x = lines[j].position.x+(r+r-dis2)*r/(r+r)*(lines[j].position.x-lines[i].position.x)/dis2
-  //     lines[j].position.y = lines[j].position.y+(r+r-dis2)*r/(r+r)*(lines[j].position.y-lines[i].position.y)/dis2
-  //     dis2 = Math.sqrt(Math.pow((lines[i].position.x-lines[j].position.x),2)+Math.pow((lines[i].position.y-lines[j].position.y),2))
-  //     var ix = (linevx[j]*(lines[j].position.x-lines[i].position.x)+linevy[j]*(lines[j].position.y-lines[i].position.y))/dis2
-  //     var iy = (linevx[i]*(lines[i].position.y-lines[j].position.y)+linevy[i]*(lines[j].position.x-lines[i].position.x))/dis2
-  //     var jx = (linevx[i]*(lines[j].position.x-lines[i].position.x)+linevy[i]*(lines[j].position.y-lines[i].position.y))/dis2
-  //     var jy = (linevx[j]*(lines[i].position.y-lines[j].position.y)+linevy[j]*(lines[j].position.x-lines[i].position.x))/dis2
-  //     var sinphi = (lines[j].position.y-lines[i].position.y)/dis2
-  //     var cosphi = (lines[j].position.x-lines[i].position.x)/dis2
-  //     linevx[i] =ix*cosphi - iy*sinphi
-  //     linevy[i] =ix*sinphi + iy*cosphi
-  //     linevx[j] =jx*cosphi - jy*sinphi
-  //     linevy[j] =jx*sinphi + jy*cosphi
-  //   }
-  //  }
-  // }
   var r2 = Math.pow((r+r),2)
   var wx = []
   var meanwx = 0
